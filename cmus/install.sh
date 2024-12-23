@@ -7,6 +7,6 @@ if ! pacman -Qs cmus > /dev/null ; then
 fi
 
 for filename in $SCRIPT_DIR/*.theme; do
-	ln -sfn $SCRIPT_DIR/$filename $HOME/.config/cmus/$filename
+	ln -sfn $filename $HOME/.config/cmus/
 done
 

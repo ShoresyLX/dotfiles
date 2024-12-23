@@ -9,5 +9,5 @@ fi
 
 # link files
 for filename in $SCRIPT_DIR/*.toml; do
-	ln -sfn $SCRIPTDIR/$filename $HOME/.config/alacritty/$filename
+	ln -sfn $filename $HOME/.config/alacritty/
 done
