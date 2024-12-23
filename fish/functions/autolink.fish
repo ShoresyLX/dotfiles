@@ -31,6 +31,7 @@ function autolink
         set -l func_name $split_path[-1]
         if not test -L $dest_dir/$func_name
             echo linking $func_name
+            ln -sfn $filepath $dest_dir/
         end
     end
 end
