@@ -1,6 +1,7 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
-    _funcsave_handler
+    set -g EDITOR nvim
+    _postexec_hooks
     set --global tide_pwd_bg_color 181926
     set --global tide_pwd_color_anchors 7dc4e4
     set --global tide_pwd_color_dirs 8aadf4

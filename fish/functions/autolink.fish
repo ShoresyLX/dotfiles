@@ -34,4 +34,8 @@ function autolink
             ln -sfn $filepath $dest_dir/
         end
     end
+
+    # Cleanup any broken symlinks if this was executed because
+    # of a renaming operation
+    find $dest_dir/ -xtype l -delete
 end
