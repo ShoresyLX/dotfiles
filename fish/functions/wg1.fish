@@ -3,7 +3,7 @@ function wg1
     if sudo wg | grep -q "wg1"
         echo "Already on wg1"
         return 1
-    else if test -n (checknfs)
+    else if checknfs
         echo "Unmount nfs drives first"
         return 1
     else if sudo wg | grep -q "wg0"
