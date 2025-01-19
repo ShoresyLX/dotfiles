@@ -1,6 +1,6 @@
 function wgdown
 # Disables whatever wireguard configs are spun up
-	if test -n (checknfs)
+	if checknfs
 		echo "Unmount nfs drive first!"
 		return 1
 	end
