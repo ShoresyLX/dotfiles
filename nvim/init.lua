@@ -114,10 +114,6 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- Set bind to open and close nvimtree
-vim.keymap.set('n', '<leader>po', '<cmd>NvimTreeOpen<CR>', { desc = '[O]pen NvimTree' })
-vim.keymap.set('n', '<leader>pc', '<cmd>NvimTreeClose<CR>', { desc = '[C]lose NvimTree' })
-
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -187,7 +183,26 @@ require('lazy').setup({
     },
     config = function()
       require('nvim-tree').setup()
+
+      -- Set bind to open and close nvimtree
+      vim.keymap.set('n', '<leader>po', '<cmd>NvimTreeOpen<CR>', { desc = '[O]pen NvimTree' })
+      vim.keymap.set('n', '<leader>pc', '<cmd>NvimTreeClose<CR>', { desc = '[C]lose NvimTree' })
     end,
+  },
+
+  -- SY - Scratch buffers
+  {
+    'https://git.sr.ht/~swaits/scratch.nvim',
+    lazy = true,
+    keys = {
+      { '<leader>bs', '<cmd>Scratch<cr>', desc = 'Scratch Buffer', mode = 'n' },
+      { '<leader>bS', '<cmd>ScratchSplit<cr>', desc = 'Scratch Buffer (split)', mode = 'n' },
+    },
+    cmd = {
+      'Scratch',
+      'ScratchSplit',
+    },
+    opts = {},
   },
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
@@ -271,6 +286,7 @@ require('lazy').setup({
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>p', group = '[P]roject' },
       },
     },
   },
@@ -586,6 +602,7 @@ require('lazy').setup({
             },
           },
         },
+        gopls = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -696,12 +713,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
       },
       'saadparwaiz1/cmp_luasnip',
@@ -792,10 +809,7 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
+  { -- Colorscheme config
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'catppuccin/nvim',
     name = 'catppuccin',
@@ -852,9 +866,7 @@ require('lazy').setup({
     end,
     -- setup must be called before loading
     init = function()
-      vim.cmd.colorscheme 'catppuccin-macchiato' -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+      vim.cmd.colorscheme 'catppuccin-macchiato'
     end,
   },
 
